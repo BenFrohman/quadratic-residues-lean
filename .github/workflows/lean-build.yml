@@ -1,0 +1,26 @@
+name: Lean Build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lean
+        uses: leanprover/lean-action@v1
+        with:
+          lean-version: v4.14.0
+
+      - name: Lake update and build
+        run: |
+          lake update
+          lake build
+
+      - name: Check axioms (optional)
+        run: |
+          echo "Build completed. Axiom check can be added via #print axioms in a dedicated file."
