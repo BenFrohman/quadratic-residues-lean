@@ -1,0 +1,3 @@
+'Frohman.QuadraticResidues.jacobi_reciprocity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Frohman.QuadraticResidues.reciprocity' depends on axioms: [propext, Classical.choice, Quot.sound]
+AUDIT PASS: 2 theorems in 1 modules depend only on propext, Classical.choice, Quot.sound (or on no axioms)

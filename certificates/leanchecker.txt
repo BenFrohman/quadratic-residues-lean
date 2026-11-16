@@ -1,0 +1,7 @@
+checker: lean4checker tag v4.14.0 (bee437b6b8584f779bc20ab8b7e27934d4f711ac), Main.lean prefix match -> exact match
+  patch: 81c81
+  patch: <         if target.isPrefixOf m then
+  patch: ---
+  patch: >         if target == m then
+QuadraticResidues: OK (1 module replayed)
+RESULT: 1 of 1 modules replayed through the kernel, 0 failures
