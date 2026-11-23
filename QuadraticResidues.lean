@@ -8,6 +8,7 @@ import Mathlib.NumberTheory.LegendreSymbol.Basic
 import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
 import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
 import Mathlib.NumberTheory.DirichletCharacter.Basic
+import QuadraticResidues.Basic
 
 /-!
 # Quadratic Residues and Character Sums

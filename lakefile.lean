@@ -22,4 +22,7 @@ require mathlib from git
 
 @[default_target]
 lean_lib QuadraticResidues where
-  -- add library configuration options here
+  -- QuadraticResidues.lean and QuadraticResidues/Basic.lean (via import)
+
+@[default_target]
+lean_lib QuadraticResiduesFull
