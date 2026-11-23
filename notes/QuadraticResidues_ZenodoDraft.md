@@ -4,7 +4,8 @@
 **Date:** 16 November 2026  
 **Status:** Zenodo draft note  
 **Related repository:** BenFrohman/quadratic-residues-lean  
-**License:** Apache-2.0
+**Typeset note:** [notes/Classical_Quadratic_Residues_Summary.pdf](Classical_Quadratic_Residues_Summary.pdf) (source: [notes/Classical_Quadratic_Residues_Summary.tex](Classical_Quadratic_Residues_Summary.tex))  
+**License:** paper text CC BY 4.0; companion Lean code Apache-2.0
 
 ## Classical quadratic residues
 
