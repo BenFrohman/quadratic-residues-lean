@@ -10,7 +10,11 @@ Polished Lean 4 interface to Mathlib's formalization of:
 - Jacobi symbol
 - Dirichlet characters
 
-Plus a short modulus-42 observation relevant to the local sieve barrier papers.
+Plus a short kernel-checked lemma that a residue class modulo 42 determines
+divisibility by 2, 3 and 7 (`mod42_determines_divisibility_by_two_three_seven`).
+The sieve-barrier claim that the truncated operator Ω_R is blind above the
+sieve level independently of the Legendre or Jacobi symbol is recorded as a
+named hypothesis; it is not proved in this repository.
 
 Author: Benjamin Stanley Frohman (ORCID 0009-0006-7068-3718)
 License: Apache-2.0

@@ -25,7 +25,7 @@
 Independent Researcher, Texas, United States\\
 ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\\
 \texttt{frohmanbenjamin@gmail.com}}
-\date{16 November 2026}
+\date{23 November 2026}
 
 \begin{document}
 \maketitle
@@ -69,7 +69,9 @@ The notes
 \item \texttt{note1-residue-algebra-stage1.pdf},
 \item \texttt{note2-residue-certificates-stage2.pdf}
 \end{itemize}
-that accompany the HODGE repository are \emph{not} concerned with classical quadratic residues. They record Lean~4 algebraic certificates for an explicit sextic section (two-pair decompositions, Jacobian determinant factorizations, non-vanishing of a degree-24 modulus, Wronskian identities, and Bézout certificates). These certificates live at commit \texttt{e207394a9ed4255ad804860b8f69fde7e940dd54} of \href{https://github.com/BenFrohman/HODGE}{BenFrohman/HODGE} and explicitly disclaim any geometric cycle-class or residue-cycle interpretation.
+that accompany the HODGE repository are \emph{not} concerned with classical quadratic residues. They record Lean~4 algebraic certificates for an explicit sextic section (two-pair decompositions, Jacobian determinant factorizations, non-vanishing of a degree-24 modulus, Wronskian identities, and Bézout certificates). These certificates live at commit
+\texttt{e207394a9ed4255a\allowbreak d804860b8f69fde7e940dd54}
+of \href{https://github.com/BenFrohman/HODGE}{BenFrohman/HODGE} and explicitly disclaim any geometric cycle-class or residue-cycle interpretation.
 
 \section{Separation from the local sieve barrier}
 
@@ -83,7 +85,7 @@ Character sums involving the Jacobi symbol appear in certain weighted or spectra
 
 \section{Companion Lean interface}
 
-The public repository \href{https://github.com/BenFrohman/quadratic-residues-lean}{BenFrohman/quadratic-residues-lean} supplies a polished Lean~4 interface to Mathlib’s formalizations of the Legendre symbol, quadratic reciprocity, the Jacobi symbol, and Dirichlet characters, together with a short modulus-42 observation relevant to the sieve barrier. The present note is the accompanying explanatory deposit.
+The public repository \href{https://github.com/BenFrohman/quadratic-residues-lean}{BenFrohman/quadratic-residues-lean} supplies a polished Lean~4 interface to Mathlib’s formalizations of the Legendre symbol, quadratic reciprocity, the Jacobi symbol, and Dirichlet characters, together with a short kernel-checked lemma that a residue class modulo~42 determines divisibility by 2, 3 and~7 (theorem \path{mod42_determines_divisibility_by_two_three_seven}). The claim, coming from the sieve-barrier papers, that the truncated operator \(\Omega_R\) is blind above the sieve level independently of the Legendre or Jacobi symbol is recorded in that repository as a named hypothesis; it is not proved there, because those sieve-theoretic objects are not formalized in the present development. The present note is the accompanying explanatory deposit.
 
 \vspace{1em}
 \noindent\textit{Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under CC~BY~4.0. Companion Lean code is released under the Apache License~2.0. Not peer-reviewed.}
