@@ -19,19 +19,19 @@ All theorems are imported from Mathlib; this file contains no `sorry` on the imp
 namespace Frohman.Quadratic
 
 /-- Legendre symbol multiplicativity. -/
-theorem legendre_mul {p : \u2115} [Fact (Nat.Prime p)] (a b : \u2124) :
+theorem legendre_mul {p : ℕ} [Fact (Nat.Prime p)] (a b : ℤ) :
     legendreSym p (a * b) = legendreSym p a * legendreSym p b :=
-  legendreSym.mul_left _ _
+  legendreSym.mul p a b
 
 /-- Quadratic reciprocity (Mathlib version). -/
-theorem reciprocity {p q : \u2115} [Fact (Nat.Prime p)] [Fact (Nat.Prime q)]
-    (hp : p \u2260 2) (hq : q \u2260 2) (hpq : p \u2260 q) :
-    legendreSym q (\u2191p) * legendreSym p (\u2191q) = (-1) ^ (p / 2 * (q / 2)) :=
+theorem reciprocity {p q : ℕ} [Fact (Nat.Prime p)] [Fact (Nat.Prime q)]
+    (hp : p ≠ 2) (hq : q ≠ 2) (hpq : p ≠ q) :
+    legendreSym q (↑p) * legendreSym p (↑q) = (-1) ^ (p / 2 * (q / 2)) :=
   legendreSym.quadratic_reciprocity hp hq hpq
 
 /-- Jacobi reciprocity. -/
-theorem jacobi_reciprocity {a b : \u2115} (ha : Odd a) (hb : Odd b) :
-    jacobiSym (\u2191a) b = (-1) ^ (a / 2 * (b / 2)) * jacobiSym (\u2191b) a :=
+theorem jacobi_reciprocity {a b : ℕ} (ha : Odd a) (hb : Odd b) :
+    jacobiSym (↑a) b = (-1) ^ (a / 2 * (b / 2)) * jacobiSym (↑b) a :=
   jacobiSym.quadratic_reciprocity ha hb
 
 end Frohman.Quadratic
