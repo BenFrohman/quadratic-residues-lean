@@ -1,10 +1,11 @@
 # Classical Quadratic Residues: Summary and Connections to Residue Algebra Certificates and Sieve Barriers
 
 **Author:** Benjamin Stanley Frohman (ORCID: 0009-0006-7068-3718)  
-**Date:** 16 November 2026  
+**Date:** 23 November 2026  
 **Status:** Zenodo draft note  
 **Related repository:** BenFrohman/quadratic-residues-lean  
-**License:** Apache-2.0
+**Typeset note:** [notes/Classical_Quadratic_Residues_Summary.pdf](Classical_Quadratic_Residues_Summary.pdf) (source: [notes/Classical_Quadratic_Residues_Summary.tex](Classical_Quadratic_Residues_Summary.tex))  
+**License:** paper text CC BY 4.0; companion Lean code Apache-2.0
 
 ## Classical quadratic residues
 
@@ -40,7 +41,7 @@ Related public work includes the \((p^2 q)\) jump constraints (Zenodo 10.5281/ze
 
 ## Lean interface
 
-The companion repository BenFrohman/quadratic-residues-lean provides a polished Lean 4 interface to Mathlib’s formalizations of the Legendre symbol, quadratic reciprocity, Jacobi symbol, and Dirichlet characters, plus a short modulus-42 observation relevant to the local sieve barrier.
+The companion repository BenFrohman/quadratic-residues-lean provides a polished Lean 4 interface to Mathlib’s formalizations of the Legendre symbol, quadratic reciprocity, Jacobi symbol, and Dirichlet characters, together with the kernel-checked lemma `mod42_determines_divisibility_by_two_three_seven` (a residue class modulo 42 determines divisibility by 2, 3 and 7). The sieve-barrier claim that the truncated operator Ω_R is blind above the sieve level independently of the Legendre or Jacobi symbol is recorded there as a named hypothesis and is not proved in that repository.
 
 ---
 

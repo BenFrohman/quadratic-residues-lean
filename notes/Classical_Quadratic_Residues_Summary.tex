@@ -1,1 +1,93 @@
-PLACEHOLDER - will update with full content after reading
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}{Remark}
+
+\title{\textbf{Classical Quadratic Residues:\\Summary and Connections to Residue Algebra Certificates and Sieve Barriers}}
+\author{Benjamin Stanley Frohman\\
+Independent Researcher, Texas, United States\\
+ORCID: \href{https://orcid.org/0009-0006-7068-3718}{0009-0006-7068-3718}\\
+\texttt{frohmanbenjamin@gmail.com}}
+\date{23 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This short technical note recalls the classical theory of quadratic residues (Legendre and Jacobi symbols, Euler’s criterion, and the law of quadratic reciprocity) and explicitly distinguishes it from two bodies of work that employ the word ``residue'' in different senses: the Stage~1/2 algebraic residue certificates for an explicit sextic fourfold in the HODGE repository, and the local residue-class analysis (modulo~42) underlying the truncated-operator sieve barrier for twin primes. The note also records the limited appearance of quadratic character sums in certain weighted or spectral sieve approaches and confirms that the classical Selberg parity barrier is orthogonal to quadratic residuosity.
+\end{abstract}
+
+\section{Classical quadratic residues}
+
+Let \(p\) be an odd prime and let \(a\) be an integer not divisible by \(p\). Then \(a\) is a \emph{quadratic residue} modulo \(p\) if the congruence
+\[
+x^2 \equiv a \pmod{p}
+\]
+has a solution; otherwise \(a\) is a quadratic non-residue. Equivalently, the Legendre symbol satisfies
+\[
+\Bigl(\frac{a}{p}\Bigr) = 1
+\]
+when \(a\) is a residue and \(-1\) when \(a\) is a non-residue. (The symbol is defined to be \(0\) when \(p\mid a\).)
+
+Exactly \((p-1)/2\) residue classes and \((p-1)/2\) non-residue classes exist modulo \(p\). The symbol is completely multiplicative:
+\[
+\Bigl(\frac{ab}{p}\Bigr) = \Bigl(\frac{a}{p}\Bigr)\Bigl(\frac{b}{p}\Bigr).
+\]
+Euler’s criterion states that
+\[
+\Bigl(\frac{a}{p}\Bigr) \equiv a^{(p-1)/2} \pmod{p}.
+\]
+For distinct odd primes \(p\) and \(q\) the law of quadratic reciprocity asserts
+\[
+\Bigl(\frac{p}{q}\Bigr)\Bigl(\frac{q}{p}\Bigr) = (-1)^{(p-1)/2\cdot(q-1)/2}.
+\]
+Supplementary laws determine \(\bigl(\frac{-1}{p}\bigr)\) and \(\bigl(\frac{2}{p}\bigr)\).
+
+The Jacobi symbol \(\bigl(\frac{a}{n}\bigr)\) extends the Legendre symbol to odd positive integers \(n\). It remains completely multiplicative and may be evaluated in polynomial time without factoring \(n\), yet the equality \(\bigl(\frac{a}{n}\bigr)=1\) does not imply that \(a\) is a square modulo \(n\) when \(n\) is composite.
+
+\section{Separation from existing residue algebra certificates}
+
+The notes
+\begin{itemize}
+\item \texttt{note1-residue-algebra-stage1.pdf},
+\item \texttt{note2-residue-certificates-stage2.pdf}
+\end{itemize}
+that accompany the HODGE repository are \emph{not} concerned with classical quadratic residues. They record Lean~4 algebraic certificates for an explicit sextic section (two-pair decompositions, Jacobian determinant factorizations, non-vanishing of a degree-24 modulus, Wronskian identities, and Bézout certificates). These certificates live at commit
+\texttt{e207394a9ed4255a\allowbreak d804860b8f69fde7e940dd54}
+of \href{https://github.com/BenFrohman/HODGE}{BenFrohman/HODGE} and explicitly disclaim any geometric cycle-class or residue-cycle interpretation.
+
+\section{Separation from the local sieve barrier}
+
+The sieve-barrier papers (including the bbff deposit \href{https://zenodo.org/deposit/24191007}{24191007}) analyse local residue classes modulo~42. The truncated operator \(\Omega_R\) is blind to prime factors larger than the sieve level; consequently the associated generating function collapses identically on genuine twin primes and on high-magnitude pseudo-primes that lie in the same residue class. The quadratic commutation barrier preserves the classical Selberg parity error. The obstruction is therefore purely modular and is independent of the Legendre or Jacobi symbol.
+
+Related modular constraints appear in the \(p^2q\)-jump work (concept DOI \href{https://doi.org/10.5281/zenodo.22713135}{10.5281/zenodo.22713135}, repository \href{https://github.com/BenFrohman/p2q-jumps-lean}{BenFrohman/p2q-jumps-lean}) and in the Collatz teaming lemmas; again the primary objects are not quadratic residuosity symbols.
+
+\section{Quadratic residuosity in the sieve literature}
+
+Character sums involving the Jacobi symbol appear in certain weighted or spectral sieve approaches to the twin-prime problem, where they detect quadratic non-residues that obstruct particular decompositions. The classical parity barrier itself (Selberg and later authors) is orthogonal to quadratic residuosity. The local sieve-barrier papers correctly isolate the blindness of the truncated operator to large prime factors as the operative obstruction, independently of Legendre symbols.
+
+\section{Companion Lean interface}
+
+The public repository \href{https://github.com/BenFrohman/quadratic-residues-lean}{BenFrohman/quadratic-residues-lean} supplies a polished Lean~4 interface to Mathlib’s formalizations of the Legendre symbol, quadratic reciprocity, the Jacobi symbol, and Dirichlet characters, together with a short kernel-checked lemma that a residue class modulo~42 determines divisibility by 2, 3 and~7 (theorem \path{mod42_determines_divisibility_by_two_three_seven}). The claim, coming from the sieve-barrier papers, that the truncated operator \(\Omega_R\) is blind above the sieve level independently of the Legendre or Jacobi symbol is recorded in that repository as a named hypothesis; it is not proved there, because those sieve-theoretic objects are not formalized in the present development. The present note is the accompanying explanatory deposit.
+
+\vspace{1em}
+\noindent\textit{Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under CC~BY~4.0. Companion Lean code is released under the Apache License~2.0. Not peer-reviewed.}
+
+\end{document}

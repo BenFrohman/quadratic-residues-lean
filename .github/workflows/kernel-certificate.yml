@@ -25,11 +25,15 @@ jobs:
           {
             echo "commit: $(git rev-parse HEAD)"
             echo "lean-toolchain: $(cat lean-toolchain)"
+            echo "elan --version: $(elan --version)"
             echo "lean --version: $(lean --version)"
             echo "lake --version: $(lake --version)"
             echo "date (UTC): $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           } | tee cert-out/environment.txt
+          cp lean-toolchain cert-out/lean-toolchain
+          cp lake-manifest.json cert-out/lake-manifest.json
+          sha256sum lake-manifest.json | tee cert-out/lake-manifest.json.sha256
       - name: Get Mathlib cache (never rebuilds Mathlib from source)
         run: |
           if grep -q '"name": *"mathlib"' lake-manifest.json 2>/dev/null; then lake exe cache get; else echo "no mathlib dependency"; fi

@@ -8,6 +8,7 @@ import Mathlib.NumberTheory.LegendreSymbol.Basic
 import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
 import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
 import Mathlib.NumberTheory.DirichletCharacter.Basic
+import Mathlib.Data.Complex.Basic
 
 /-!
 # Legendre symbol, quadratic reciprocity, Jacobi symbol, and Dirichlet characters
@@ -19,17 +20,21 @@ Clean interface to the Mathlib formalizations. All theorems below are kernel-che
 namespace Frohman.NumberTheory
 
 open Mathlib
+open scoped BigOperators
 
 /-- Legendre symbol. -/
 def legendre (p : ℕ) [Fact p.Prime] (a : ℤ) : ℤ := legendreSym p a
 
-theorem legendre_euler (p : ℕ) [Fact p.Prime] (hp : p ≠ 2) (a : ℤ) (ha : ¬ (p : ℤ) ∣ a) :
-    legendre p a ≡ a ^ (p / 2) [ZMOD p] :=
-  legendreSym.eq_pow ha
+/-- Euler's criterion, as an integer congruence, from Mathlib's `legendreSym.eq_pow`. -/
+theorem legendre_euler (p : ℕ) [Fact p.Prime] (_hp : p ≠ 2) (a : ℤ) (_ha : ¬ (p : ℤ) ∣ a) :
+    legendre p a ≡ a ^ (p / 2) [ZMOD p] := by
+  rw [← ZMod.intCast_eq_intCast_iff, legendre, Int.cast_pow]
+  exact legendreSym.eq_pow p a
 
+/-- Quadratic reciprocity, matching Mathlib's statement `(q / p) * (p / q)`. -/
 theorem legendre_reciprocity (p q : ℕ) [Fact p.Prime] [Fact q.Prime]
     (hp : p ≠ 2) (hq : q ≠ 2) (hpq : p ≠ q) :
-    legendre p q * legendre q p = (-1) ^ ((p / 2) * (q / 2)) :=
+    legendre q p * legendre p q = (-1) ^ ((p / 2) * (q / 2)) :=
   legendreSym.quadratic_reciprocity hp hq hpq
 
 /-- Jacobi symbol. -/
@@ -39,9 +44,10 @@ theorem jacobi_reciprocity (a b : ℕ) (ha : Odd a) (hb : Odd b) :
     jacobi a b = (-1) ^ (a / 2 * (b / 2)) * jacobi b a :=
   jacobiSym.quadratic_reciprocity ha hb
 
-/-- Dirichlet character sum (complete). -/
-theorem dirichlet_complete_sum (n : ℕ) (χ : DirichletCharacter ℂ n) (h : χ ≠ 1) :
+/-- Complete sum of a nontrivial Dirichlet character (Mathlib: `MulChar.sum_eq_zero_of_ne_one`).
+    The modulus is required to be nonzero so that `ZMod n` is finite. -/
+theorem dirichlet_complete_sum (n : ℕ) [NeZero n] (χ : DirichletCharacter ℂ n) (h : χ ≠ 1) :
     ∑ x, χ x = 0 :=
-  DirichletCharacter.sum_eq_zero_of_nontrivial h
+  MulChar.sum_eq_zero_of_ne_one h
 
 end Frohman.NumberTheory
