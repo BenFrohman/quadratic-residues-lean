@@ -75,7 +75,7 @@ of \href{https://github.com/BenFrohman/HODGE}{BenFrohman/HODGE} and explicitly d
 
 \section{Separation from the local sieve barrier}
 
-The sieve-barrier papers (including the bbff deposit \href{https://zenodo.org/deposit/24191007}{24191007}) analyse local residue classes modulo~42. The truncated operator \(\Omega_R\) is blind to prime factors larger than the sieve level; consequently the associated generating function collapses identically on genuine twin primes and on high-magnitude pseudo-primes that lie in the same residue class. The quadratic commutation barrier preserves the classical Selberg parity error. The obstruction is therefore purely modular and is independent of the Legendre or Jacobi symbol.
+The sieve-barrier papers (including the published bbff record \href{https://doi.org/10.5281/zenodo.24191007}{10.5281/zenodo.24191007}) analyse local residue classes modulo~42. Those papers claim that the truncated operator \(\Omega_R\) is blind to prime factors larger than the sieve level, and that the associated generating function therefore collapses identically on genuine twin primes and on high-magnitude pseudo-primes that lie in the same residue class. That generating-function collapse is a named hypothesis; it is not proved in this note, and it is not proved in the companion Lean repository, because those sieve-theoretic objects are not formalized there. The quadratic commutation barrier preserves the classical Selberg parity error. The obstruction claimed in those papers is therefore purely modular and is independent of the Legendre or Jacobi symbol.
 
 Related modular constraints appear in the \(p^2q\)-jump work (concept DOI \href{https://doi.org/10.5281/zenodo.22713135}{10.5281/zenodo.22713135}, repository \href{https://github.com/BenFrohman/p2q-jumps-lean}{BenFrohman/p2q-jumps-lean}) and in the Collatz teaming lemmas; again the primary objects are not quadratic residuosity symbols.
 
@@ -85,7 +85,32 @@ Character sums involving the Jacobi symbol appear in certain weighted or spectra
 
 \section{Companion Lean interface}
 
-The public repository \href{https://github.com/BenFrohman/quadratic-residues-lean}{BenFrohman/quadratic-residues-lean} supplies a polished Lean~4 interface to Mathlib’s formalizations of the Legendre symbol, quadratic reciprocity, the Jacobi symbol, and Dirichlet characters, together with a short kernel-checked lemma that a residue class modulo~42 determines divisibility by 2, 3 and~7 (theorem \path{mod42_determines_divisibility_by_two_three_seven}). The claim, coming from the sieve-barrier papers, that the truncated operator \(\Omega_R\) is blind above the sieve level independently of the Legendre or Jacobi symbol is recorded in that repository as a named hypothesis; it is not proved there, because those sieve-theoretic objects are not formalized in the present development. The present note is the accompanying explanatory deposit.
+The public repository \href{https://github.com/BenFrohman/quadratic-residues-lean}{BenFrohman/quadratic-residues-lean} supplies a polished Lean~4 interface to Mathlib’s formalizations of the Legendre symbol, quadratic reciprocity, the Jacobi symbol, and Dirichlet characters, together with the following short kernel-checked modular observation. The official kernel certificate is GitHub Actions run~\href{https://github.com/BenFrohman/quadratic-residues-lean/actions/runs/45320294722}{45320294722} on merge commit \href{https://github.com/BenFrohman/quadratic-residues-lean/commit/225d4e47c7d232b6a23bdfe326dd93bd2ec41e76}{\texttt{225d4e47c7d232b6a23bdfe326dd93bd2ec41e76}} (23~November~2026).
+
+\begin{theorem}
+\label{thm:mod42}
+The Lean theorem
+\begin{center}
+{\footnotesize\ttfamily Frohman.QuadraticResidues.\\
+mod42\_determines\_divisibility\_by\_two\_three\_seven}
+\end{center}
+states: for \(n,m:\mathbb{N}\), if \(n \mathbin{\%} 42 = m \mathbin{\%} 42\), then
+\[
+(2 \mid n \leftrightarrow 2 \mid m)\ \land\ (3 \mid n \leftrightarrow 3 \mid m)\ \land\ (7 \mid n \leftrightarrow 7 \mid m).
+\]
+In the Lean statement:
+\begin{center}
+\ttfamily\footnotesize
+\begin{tabular}{@{}l@{}}
+theorem mod42\_determines\_divisibility\_by\_two\_three\_seven\\
+\quad (n m : \(\mathbb{N}\)) (h : n \% 42 = m \% 42) :\\
+\quad (2 \(\mid\) n \(\leftrightarrow\) 2 \(\mid\) m) \(\land\) (3 \(\mid\) n \(\leftrightarrow\) 3 \(\mid\) m) \(\land\) (7 \(\mid\) n \(\leftrightarrow\) 7 \(\mid\) m).
+\end{tabular}
+\end{center}
+The official certificate records that this theorem depends only on the axiom \texttt{propext}.
+\end{theorem}
+
+The claim, coming from the sieve-barrier papers, that the truncated operator \(\Omega_R\) is blind above the sieve level independently of the Legendre or Jacobi symbol, and that the associated generating function therefore collapses identically on genuine twin primes and on high-magnitude pseudo-primes in the same residue class modulo~42, is recorded in that repository as a named hypothesis; it is not proved there, and it is not proved in this note, because those sieve-theoretic objects are not formalized in the present development. The present note is the accompanying explanatory deposit.
 
 \vspace{1em}
 \noindent\textit{Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under CC~BY~4.0. Companion Lean code is released under the Apache License~2.0. Not peer-reviewed.}
